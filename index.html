@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+   <title>Calculadora</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+
+        #calculadora {
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #222;
+            padding: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        #display {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 10px;
+            padding: 0 10px;
+            background-color: #333;
+            color: white;
+            font-size: 2.5em;
+            text-align: right;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box; /* Garante que o padding não afete a largura total */
+        }
+
+        .botoes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        button {
+            height: 60px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.5em;
+            cursor: pointer;
+            background-color: #555;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #666;
+        }
+
+        .operador {
+            background-color: #f39c12; /* Cor laranja para operadores */
+        }
+
+        .operador:hover {
+            background-color: #e67e22;
+        }
+
+        .zero {
+            grid-column: span 2; /* Faz o botão ocupar 2 colunas */
+        }
+        
+        .igual {
+            grid-column: span 2; /* Faz o botão ocupar 2 colunas */
+            background-color: #2ecc71; /* Cor verde para o igual */
+        }
+
+        .igual:hover {
+            background-color: #27ae60;
+        }
+    </style>
+    </head>
+</head>
+<body>
+
+    <div id="calculadora">
+        <input type="text" id="display" readonly>
+        <div class="botoes">
+            <button onclick="limparDisplay()">C</button>
+            <button class="operador" onclick="adicionarCaractere('/')">/</button>
+            <button class="operador" onclick="adicionarCaractere('*')">x</button>
+            <button onclick="apagar()">⌫</button>
+            
+            <button onclick="adicionarCaractere('7')">7</button>
+            <button onclick="adicionarCaractere('8')">8</button>
+            <button onclick="adicionarCaractere('9')">9</button>
+            <button class="operador" onclick="adicionarCaractere('-')">-</button>
+            
+            <button onclick="adicionarCaractere('4')">4</button>
+            <button onclick="adicionarCaractere('5')">5</button>
+            <button onclick="adicionarCaractere('6')">6</button>
+            <button class="operador" onclick="adicionarCaractere('+')">+</button>
+
+            <button onclick="adicionarCaractere('1')">1</button>
+            <button onclick="adicionarCaractere('2')">2</button>
+            <button onclick="adicionarCaractere('3')">3</button>
+            <button class="igual" onclick="calcular()">=</button>
+
+            <button class="zero" onclick="adicionarCaractere('0')">0</button>
+            <button onclick="adicionarCaractere('.')">.</button>
+        </div>
+    </div>
+    <script>
+        // Primeiro, pegamos o elemento do display para poder manipulá-lo
+        const display = document.getElementById('display');
+
+        // Função para adicionar números e operadores no display
+        function adicionarCaractere(caractere) {
+            display.value += caractere;
+        }
+
+        // Função para limpar totalmente o display (botão 'C')
+        function limparDisplay() {
+            display.value = '';
+        }
+
+        // Função para apagar o último caractere (botão '⌫')
+        function apagar() {
+            display.value = display.value.slice(0, -1);
+        }
+
+        // Função para calcular o resultado (botão '=')
+        function calcular() {
+            try {
+                // 'eval()' é uma função poderosa (e perigosa em sites reais) 
+                // que pega uma string de texto e a executa como código.
+                // Para nossa calculadora, ela é perfeita para calcular a expressão.
+                const resultado = eval(display.value);
+                display.value = resultado;
+            } catch (error) {
+                // Se o usuário digitar uma expressão inválida (ex: "5*+2"),
+                // o 'eval' dará um erro. O 'catch' captura esse erro.
+                display.value = 'Erro';
+            }
+        }
+    </script>
+    </body>
+</html>
+</body>
+</html>
