@@ -36,7 +36,7 @@
             text-align: right;
             border: none;
             border-radius: 5px;
-            box-sizing: border-box; /* Garante que o padding não afete a largura total */
+            box-sizing: border-box; 
         }
 
         .botoes {
@@ -60,7 +60,7 @@
         }
 
         .operador {
-            background-color: #f39c12; /* Cor laranja para operadores */
+            background-color: #f39c12;
         }
 
         .operador:hover {
@@ -68,12 +68,12 @@
         }
 
         .zero {
-            grid-column: span 2; /* Faz o botão ocupar 2 colunas */
+            grid-column: span 2; 
         }
         
         .igual {
-            grid-column: span 2; /* Faz o botão ocupar 2 colunas */
-            background-color: #2ecc71; /* Cor verde para o igual */
+            grid-column: span 2; 
+            background-color: #2ecc71; 
         }
 
         .igual:hover {
@@ -112,35 +112,32 @@
         </div>
     </div>
     <script>
-        // Primeiro, pegamos o elemento do display para poder manipulá-lo
+       
         const display = document.getElementById('display');
 
-        // Função para adicionar números e operadores no display
+        
         function adicionarCaractere(caractere) {
             display.value += caractere;
         }
 
-        // Função para limpar totalmente o display (botão 'C')
+        
         function limparDisplay() {
             display.value = '';
         }
 
-        // Função para apagar o último caractere (botão '⌫')
+       
         function apagar() {
             display.value = display.value.slice(0, -1);
         }
 
-        // Função para calcular o resultado (botão '=')
+        
         function calcular() {
             try {
-                // 'eval()' é uma função poderosa (e perigosa em sites reais) 
-                // que pega uma string de texto e a executa como código.
-                // Para nossa calculadora, ela é perfeita para calcular a expressão.
+               
                 const resultado = eval(display.value);
                 display.value = resultado;
             } catch (error) {
-                // Se o usuário digitar uma expressão inválida (ex: "5*+2"),
-                // o 'eval' dará um erro. O 'catch' captura esse erro.
+           
                 display.value = 'Erro';
             }
         }
